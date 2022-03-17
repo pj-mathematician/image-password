@@ -8,6 +8,7 @@
   color: var(--primary-color);
   font-weight: bold;
   transition: all 0.3s;
+  /* margin-left: 10px; */
 }
 
 .button {
@@ -31,3 +32,6 @@
 
 
 
+.selectGroup {
+  position: relative;
+}

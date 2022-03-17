@@ -46,7 +46,10 @@ const list = [
 
 function App() {
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
       {/* <Dropdown /> */}
       <Select list={list}/>
     </div>

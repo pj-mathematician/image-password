@@ -1,7 +1,7 @@
-import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
+import { BsCaretDownFill } from "react-icons/bs";
 import styles from "./Select.module.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Dropdown from "../Dropdown";
 
 function Select({ list }) {
@@ -13,12 +13,9 @@ function Select({ list }) {
     setOpen((prev) => !prev);
   };
 
-  useEffect(() => {
-    console.log(selectedNode)
-  },[selectedNode])
-
   return (
-    <div>
+    <div className={styles.selectGroup}>
+      {selectedNode?.name}
       <button className={styles.button} onClick={handleClick}>
         <BsCaretDownFill
           className={styles.dropdownSvg}
@@ -27,7 +24,13 @@ function Select({ list }) {
           }}
         />
       </button>
-      {!open && <Dropdown list={list} setSelectedNode={setSelectedNode} />}
+      {!open && (
+        <Dropdown
+          list={list}
+          selectedNode={selectedNode}
+          setSelectedNode={setSelectedNode}
+        />
+      )}
     </div>
   );
 }
