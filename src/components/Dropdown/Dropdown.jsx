@@ -1,8 +1,11 @@
+import React from 'react'
+import styles from './Dropdown.module.css'
 
-function Dropdown({ list }) {
-    return <div>
-         
+
+export const Dropdown = () => {
+  return (
+    <div>
+        
     </div>
+  )
 }
-
-export default Dropdown;
