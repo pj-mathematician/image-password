@@ -11,9 +11,23 @@
   margin: 1rem;
   width: max-content;
   position: absolute;
-  top: calc(var(--size) / 2);
-  left:0;
+  /* top: var(--size);
+  right: calc(-1*var(--size)); */
   z-index: -1;
+}
+
+.dropdown::after {
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    top: -11px;
+    left: 5px;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+    border-bottom: none;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
 }
 
 .selected {
