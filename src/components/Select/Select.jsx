@@ -24,13 +24,14 @@ function Select({ list }) {
           }}
         />
       </button>
-      {!open && (
+      {/* {!open && ( */}
         <Dropdown
           list={list}
           selectedNode={selectedNode}
           setSelectedNode={setSelectedNode}
+          open={open}
         />
-      )}
+      {/* )} */}
     </div>
   );
 }
