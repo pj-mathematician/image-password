@@ -11,9 +11,7 @@ export default function Demo() {
 
   const usernameRef = useRef();
 
-  const handleSubmit = () => {
-
-  }
+  const handleSubmit = () => {};
 
   return (
     <div>
@@ -22,8 +20,17 @@ export default function Demo() {
         <h1>Demo</h1>
       </div>
 
+      <div className={styles.heading} style={{ paddingLeft: "60px" }}>
+        <Circle />
+        <h1>Sign In</h1>
+      </div>
 
       <SignIn />
+
+      <div className={styles.heading} style={{ paddingLeft: "60px", marginTop: '20px' }}>
+        <Circle />
+        <h1>Sign Up</h1>
+      </div>
     </div>
   );
 }

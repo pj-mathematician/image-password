@@ -6,19 +6,23 @@ const { parent, heading, imageGrid, confirmSection, block, selected } = styles;
 export const ImageGrid = ({ imageList }) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
-  const clear = () => {
-    setSelectedImages([])
-  }
+  const imageKeys = Object.keys(imageList);
+  const [shuffledImageKeys, setShuffledImageKeys] = useState(() =>
+    imageKeys.sort((a, b) => 0.5 - Math.random())
+  );
 
-  const handleSubmit = () => {
-    
-  }
+  const clear = () => {
+    setSelectedImages([]);
+  };
+
+  const handleSubmit = () => {};
 
   return (
     <div className={parent}>
       <div className={heading}>Select Images</div>
       <div className={imageGrid}>
-        {Object.entries(imageList).map(([id, image]) => {
+        {/* {Object.entries(imageList).map(([id, image]) => { */}
+        {shuffledImageKeys.map((id) => {
           const handleClick = () => {
             setSelectedImages((curr) => {
               if (curr.includes(id)) {
@@ -41,7 +45,7 @@ export const ImageGrid = ({ imageList }) => {
               onClick={handleClick}
               className={`${block} ${isSelected ? selected : ""}`}
             >
-              <img src={image} alt="" />
+              <img src={imageList[id]} alt="" />
             </div>
           );
         })}
