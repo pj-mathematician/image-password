@@ -7,13 +7,18 @@ import styles from "./this.module.css";
 
 export const SignIn = () => {
   const [selectedNode, setSelectedNode] = useState(null);
+  const [username, setUsername] = useState("");
 
   return (
     <div>
       <div className={styles.form}>
         <div className={styles.inputGroup}>
           <label htmlFor="username">Username: </label>
-          <input type="text" />
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
+          />
         </div>
         <div className={styles.selectGroup}>
           <label htmlFor="category">Category: </label>
@@ -23,7 +28,7 @@ export const SignIn = () => {
           <button className={styles.passwordGen}>Generate Image Grid</button>
         </div>
       </div>
-      <ImageGrid />
+      <ImageGrid imageList={imageList} usernameRef />
     </div>
   );
 };
@@ -70,4 +75,14 @@ let list = {
   },
 };
 
-// imageList = [];
+let imageList = {
+  i1: "https://cdn.discordapp.com/attachments/751667312825729074/954705082824421376/unknown.png",
+  i2: "https://cdn.discordapp.com/attachments/751667312825729074/954705146028380170/unknown.png",
+  i3: "https://cdn.discordapp.com/attachments/751667312825729074/954705201724530698/unknown.png",
+  i4: "https://cdn.discordapp.com/attachments/751667312825729074/954705249212461096/unknown.png",
+  i5: "https://cdn.discordapp.com/attachments/751667312825729074/954705290954158120/unknown.png",
+  i6: "https://cdn.discordapp.com/attachments/751667312825729074/954705365608579112/unknown.png",
+  i7: "https://cdn.discordapp.com/attachments/751667312825729074/954705431643684925/unknown.png",
+  i8: "https://cdn.discordapp.com/attachments/751667312825729074/954705476656980018/unknown.png",
+  i9: "https://cdn.discordapp.com/attachments/751667312825729074/954703845907378176/unknown.png",
+};
