@@ -1,0 +1,48 @@
+.parent {
+  border-radius: 10px;
+  /* padding: 100px; */
+}
+
+.heading {
+  background-color: #2196f3;
+  font-size: 20px;
+  padding: 5px 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.block {
+  background-color: red;
+  height: 200px;
+  width: 100%;
+}
+
+.confirmSection {
+  background-color: #2196f3;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 10px;
+  gap: 10px;
+}
+
+.confirmSection > button {
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.confirmSection > button:nth-child(2) {
+}

@@ -4,8 +4,10 @@
   height: 100vh;
   margin: auto;
   transition: all 0.1s;
-  padding: 5px;
+  padding: 10px;
   z-index: -2;
+  background-color: white;
+  box-shadow: 1px 1px 4px 0px #757575;
 }
 
 @media screen and (min-width: 900px) {

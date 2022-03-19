@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Dropdown from "../Dropdown";
+import ImageGrid from "../ImageGrid";
 
 import styles from "./this.module.css";
 
@@ -22,6 +23,7 @@ export const SignIn = () => {
           <button className={styles.passwordGen}>Generate Image Grid</button>
         </div>
       </div>
+      <ImageGrid />
     </div>
   );
 };
@@ -68,5 +70,4 @@ let list = {
   },
 };
 
-
-imageList = []
+// imageList = [];
