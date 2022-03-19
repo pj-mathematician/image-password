@@ -1,87 +1,84 @@
-import React from "react";
-
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import React, { useState } from "react";
+import { BsCaretDownFill, BsStarFill } from "react-icons/bs";
 
 import styles from "./Dropdown.module.css";
 
+import ClickOutsideDetector from "../../helper/OutsideClickDetect";
 
-export const Dropdown = ({ list, setSelectedNode, selectedNode, open }) => {
-  
+export const Dropdown = ({ val, setVal, list }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen((_) => !_);
+  };
 
   return (
-    <div className={styles.dropdown + ' ' + (!open && styles.active)}>
-      <ul>
-        {list.map((node) => {
-          return (
-            <TreeNode
-              key={node.id}
-              node={node}
-              setSelectedNode={setSelectedNode}
-              selectedNode={selectedNode}
-              address="/"
-              open={open}
-            />
-          );
-        })}
-      </ul>
-      {selectedNode !== null ? (
-        <div className={styles.selectionButtons}>
-          <button
-            onClick={() => {
-              setSelectedNode(null);
-            }}
-          >
-            Clear Selection
-          </button>
-        </div>
-      ) : (
-        ""
+    <div className={styles.dropdown}>
+      <button className={styles.toggleButton} onClick={handleClick}>
+        <BsCaretDownFill />
+      </button>
+      {open && (
+        <ClickOutsideDetector
+          listen
+          onClickOutside = {() => {setOpen(false)}}
+        >
+          <div className={styles.dropdownMenu}>
+            <ul>
+              {list?.map((node) => {
+                return (
+                  <TreeNode
+                    node={node}
+                    key={node.id}
+                    selectedNode={val}
+                    setSelectedNode={setVal}
+                  />
+                );
+              })}
+            </ul>
+          </div>
+        </ClickOutsideDetector>
       )}
     </div>
   );
 };
 
-const TreeNode = ({ node, setSelectedNode, selectedNode, address, open }) => {
+const TreeNode = ({ node, selectedNode, setSelectedNode }) => {
   const hasChildren = node.children.length !== 0;
-  const isCurrentNode = selectedNode?.id === node.id;
-
-  let newAddress = address + node.name + "/";
+  const isSelectedNode = node.id === selectedNode?.id;
 
   const handleClick = () => {
-    if (!hasChildren && !open) {
-      setSelectedNode(node);
-      console.log(address);
-    }
+    if (hasChildren) return;
+    setSelectedNode(node);
   };
 
   return (
-    <li
-      onClick={handleClick}
-      className={isCurrentNode ? styles.selected : ""}
-      style={{
-        color: !hasChildren && "#424242",
-        fontSize: hasChildren ? "15px" : "20px",
-      }}
-    >
-      <div>
-        {!hasChildren && (isCurrentNode ? <AiFillStar /> : <AiOutlineStar />)}
-        {node?.name}
-      </div>
-      <ul>
-        {hasChildren &&
-          node.children.map((subNode) => {
-            return (
+    <li>
+      {hasChildren ? (
+        <>
+          <span className={styles.parentNode}>{node.name}</span>
+          <ul>
+            {node.children.map((subNode) => (
               <TreeNode
-                key={subNode.id}
                 node={subNode}
+                key={subNode.id}
                 selectedNode={selectedNode}
                 setSelectedNode={setSelectedNode}
-                address={newAddress}
-                open={open}
               />
-            );
-          })}
-      </ul>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <button
+          style={{
+            color: isSelectedNode ? "blue" : "",
+          }}
+          onClick={handleClick}
+          className={styles.optionNode}
+        >
+          <div>{isSelectedNode && <BsStarFill />}</div>
+          <div>{node.name}</div>
+        </button>
+      )}
     </li>
   );
 };
