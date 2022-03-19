@@ -13,22 +13,24 @@ export const Dropdown = ({ val, setVal, list }) => {
   };
 
   return (
-    <div className={styles.dropdown}>
-      <button className={styles.toggleButton} onClick={handleClick}>
-        <BsCaretDownFill />
-      </button>
-      {open && (
-        <ClickOutsideDetector
-          listen
-          onClickOutside = {() => {setOpen(false)}}
-        >
+    <ClickOutsideDetector
+      listen
+      onClickOutside={() => {
+        setOpen(false);
+      }}
+    >
+      <div className={styles.dropdown}>
+        <button className={styles.toggleButton} onClick={handleClick}>
+          {val && val[1].name} <BsCaretDownFill />
+        </button>
+        {open && (
           <div className={styles.dropdownMenu}>
             <ul>
-              {list?.map((node) => {
+              {Object.entries(list).map(([id, node]) => {
                 return (
                   <TreeNode
-                    node={node}
-                    key={node.id}
+                    entry={[id, node]}
+                    key={id}
                     selectedNode={val}
                     setSelectedNode={setVal}
                   />
@@ -36,19 +38,21 @@ export const Dropdown = ({ val, setVal, list }) => {
               })}
             </ul>
           </div>
-        </ClickOutsideDetector>
-      )}
-    </div>
+        )}
+      </div>
+    </ClickOutsideDetector>
   );
 };
 
-const TreeNode = ({ node, selectedNode, setSelectedNode }) => {
-  const hasChildren = node.children.length !== 0;
-  const isSelectedNode = node.id === selectedNode?.id;
+const TreeNode = ({ entry, selectedNode, setSelectedNode }) => {
+  const [id, node] = entry;
+
+  const hasChildren = node.children !== null;
+  const isSelectedNode = id === (selectedNode && selectedNode[0]);
 
   const handleClick = () => {
     if (hasChildren) return;
-    setSelectedNode(node);
+    setSelectedNode(entry);
   };
 
   return (
@@ -57,20 +61,22 @@ const TreeNode = ({ node, selectedNode, setSelectedNode }) => {
         <>
           <span className={styles.parentNode}>{node.name}</span>
           <ul>
-            {node.children.map((subNode) => (
-              <TreeNode
-                node={subNode}
-                key={subNode.id}
-                selectedNode={selectedNode}
-                setSelectedNode={setSelectedNode}
-              />
-            ))}
+            {Object.entries(node.children).map(([sub_id, sub_node]) => {
+              return (
+                <TreeNode
+                  entry={[sub_id, sub_node]}
+                  key={sub_id}
+                  selectedNode={selectedNode}
+                  setSelectedNode={setSelectedNode}
+                />
+              );
+            })}
           </ul>
         </>
       ) : (
         <button
           style={{
-            color: isSelectedNode ? "blue" : "",
+            color: isSelectedNode ? "#039be5" : "",
           }}
           onClick={handleClick}
           className={styles.optionNode}

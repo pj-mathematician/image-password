@@ -1,0 +1,55 @@
+.form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bolder;
+  letter-spacing: 1px;
+  color: #039be5;
+}
+
+.inputGroup > input {
+  width: 90%;
+  margin: 2px;
+  border: none;
+  border-bottom: 1px solid #6d6d6d55;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+}
+
+.selectGroup {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  gap: 15px;
+}
+
+.passwordGen {
+  width: 50%;
+  /* margin-top: 20px; */
+  background-color: #039be5;
+  color: white;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.surroundDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
