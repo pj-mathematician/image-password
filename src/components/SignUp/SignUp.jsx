@@ -39,12 +39,10 @@ export const SignUp = () => {
       return;
     }
 
-
     fetch(`${server}/images/${selectedNode[1].address}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        setImageList(data)
+        setImageList(data);
       });
   };
 
@@ -85,7 +83,13 @@ export const SignUp = () => {
       },
       method: "POST",
       body: JSON.stringify(user),
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      if (res.ok) {
+        setUsername('')
+        setPassword([])
+        setConfirmPassword([])
+      }
+    });
 
     setPasswordErr("");
   };
@@ -132,6 +136,15 @@ export const SignUp = () => {
             setSelectedImages={setConfirmPassword}
           />
           <div className={styles.surroundDiv}>
+            <button
+              onClick={() => {
+                setIsPasswordEntered(false);
+              }}
+              className={styles.button}
+            >
+              Back
+            </button>
+
             <button onClick={handleSubmit} className={styles.button}>
               Sign Up
             </button>
@@ -142,91 +155,3 @@ export const SignUp = () => {
   );
 };
 
-// let list = {
-//   cat_1: {
-//     address: "cat_1",
-//     children: {
-//       cat_1_1: {
-//         address: "cat_1/cat_1_1",
-//         name: "sub_category_1",
-//         children: null,
-//       },
-//       cat_1_2: {
-//         address: "cat_1/cat_1_2",
-//         name: "sub_category_2",
-//         children: null,
-//       },
-//     },
-//     name: "category_1",
-//   },
-//   cat_2: {
-//     address: "cat_2",
-//     children: {
-//       cat_2_1: {
-//         address: "cat_2/cat_2_1",
-//         name: "sub_category_1",
-//         children: null,
-//       },
-//       cat_2_2: {
-//         address: "cat_2/cat_2_2",
-//         name: "sub_category_2",
-//         children: null,
-//       },
-//     },
-//     name: "category_2",
-//   },
-// };
-
-// let list = {
-//   1: {
-//     name: "Node 1",
-//     address: "1",
-//     children: {
-//       11: {
-//         name: "Sub Node 11",
-//         address: "1/11",
-//         children: {
-//           111: {
-//             name: "Sub Sub Node 111",
-//             address: "1/11/111",
-//             children: null,
-//           },
-//         },
-//       },
-//       12: {
-//         name: "Sub Node 2",
-//         address: "1/12",
-//         children: {
-//           121: {
-//             name: "Sub Sub Node 121",
-//             address: "1/12/121",
-//             children: null,
-//           },
-//         },
-//       },
-//     },
-//   },
-//   2: {
-//     name: "Node 2",
-//     address: "2",
-//     children: {
-//       21: {
-//         name: "Sub Node 2",
-//         address: "2/21",
-//         children: null,
-//       },
-//     },
-//   },
-// };
-
-let imageList = {
-  i1: "https://cdn.discordapp.com/attachments/751667312825729074/954705082824421376/unknown.png",
-  i2: "https://cdn.discordapp.com/attachments/751667312825729074/954705146028380170/unknown.png",
-  i3: "https://cdn.discordapp.com/attachments/751667312825729074/954705201724530698/unknown.png",
-  i4: "https://cdn.discordapp.com/attachments/751667312825729074/954705249212461096/unknown.png",
-  i5: "https://cdn.discordapp.com/attachments/751667312825729074/954705290954158120/unknown.png",
-  i6: "https://cdn.discordapp.com/attachments/751667312825729074/954705365608579112/unknown.png",
-  i7: "https://cdn.discordapp.com/attachments/751667312825729074/954705431643684925/unknown.png",
-  i8: "https://cdn.discordapp.com/attachments/751667312825729074/954705476656980018/unknown.png",
-  i9: "https://cdn.discordapp.com/attachments/751667312825729074/954703845907378176/unknown.png",
-};

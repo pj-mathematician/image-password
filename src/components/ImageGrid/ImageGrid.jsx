@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import styles from "./ImageGrid.module.css";
-const { parent, heading, imageGrid, confirmSection, block, selected } = styles;
+const {
+  parent,
+  heading,
+  imageGrid,
+  confirmSection,
+  block,
+  selected,
+  noContent,
+} = styles;
 
 export const ImageGrid = ({ imageList, setSelectedImages, selectedImages }) => {
-  // if (imageList) {
-  //   const imageKeys = Object.keys(imageList);
-  // const [shuffledImageKeys, setShuffledImageKeys] = useState(() =>
-  // imageKeys.sort((a, b) => 0.5 - Math.random())
-  //   );
-  // }
   const [shuffledImageKeys, setShuffledImageKeys] = useState(null);
   const clear = () => {
     setSelectedImages([]);
@@ -22,11 +24,10 @@ export const ImageGrid = ({ imageList, setSelectedImages, selectedImages }) => {
     }
   }, [imageList]);
 
-
   return (
     <div className={parent}>
       <div className={heading}>Select Images</div>
-      <div className={imageGrid}>
+      <div className={`${imageGrid} ${!imageList ? noContent : ""}`}>
         {shuffledImageKeys
           ? shuffledImageKeys.map((id) => {
               const handleClick = () => {

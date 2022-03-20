@@ -1,6 +1,8 @@
 .parent {
   border-radius: 10px;
-  margin: 10px auto
+  margin: 10px auto;
+  width: 80%;
+
 }
 
 .heading {
@@ -71,6 +73,10 @@
   height: 40px;
   border-radius: 50%;
   background-color: blue;
+}
+
+.noContent {
+  min-width: max-content;
 }
 
 @media screen and (min-width: 900px) {
