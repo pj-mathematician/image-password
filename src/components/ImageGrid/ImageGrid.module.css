@@ -81,7 +81,8 @@
   }
  
   .parent {
-    /* width: min-content; */
-    min-width: max-content;
+    width: min-content;
+    /* min-width: max-content; */
+    /* width: auto; */
   }
 }

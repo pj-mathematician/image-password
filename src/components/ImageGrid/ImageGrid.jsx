@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./ImageGrid.module.css";
 const { parent, heading, imageGrid, confirmSection, block, selected } = styles;
@@ -6,18 +6,22 @@ const { parent, heading, imageGrid, confirmSection, block, selected } = styles;
 export const ImageGrid = ({ imageList, setSelectedImages, selectedImages }) => {
   // if (imageList) {
   //   const imageKeys = Object.keys(imageList);
-  //   const [shuffledImageKeys, setShuffledImageKeys] = useState(() =>
-  //     imageKeys.sort((a, b) => 0.5 - Math.random())
+  // const [shuffledImageKeys, setShuffledImageKeys] = useState(() =>
+  // imageKeys.sort((a, b) => 0.5 - Math.random())
   //   );
   // }
-  const [shuffledImageKeys, setShuffledImageKeys] = useState(() => {
-    if (imageList) {
-      return Object.keys(imageList).sort((a, b) => 0.5 - Math.random());
-    } else return null;
-  });
+  const [shuffledImageKeys, setShuffledImageKeys] = useState(null);
   const clear = () => {
     setSelectedImages([]);
   };
+
+  useEffect(() => {
+    if (imageList) {
+      const imageKeys = Object.keys(imageList);
+      setShuffledImageKeys(imageKeys.sort((a, b) => 0.5 - Math.random()));
+    }
+  }, [imageList]);
+
 
   return (
     <div className={parent}>

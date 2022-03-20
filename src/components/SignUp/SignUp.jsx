@@ -43,6 +43,7 @@ export const SignUp = () => {
     fetch(`${server}/images/${selectedNode[1].address}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setImageList(data)
       });
   };
