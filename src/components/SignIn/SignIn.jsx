@@ -1,17 +1,52 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dropdown from "../Dropdown";
 import ImageGrid from "../ImageGrid";
 
 import styles from "./this.module.css";
 
 export const SignIn = () => {
+  const server = "http://b33f-2409-4050-2d98-f749-d508-322d-47a8-4f46.ngrok.io/";
+  const [imageList1, setImageList1] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
   const [username, setUsername] = useState("");
+
+  const [passwordErr, setPasswordErr] = useState("");
+
+  const usernameErr = "Enter a valid username";
+  const nodeErr = "Select a category";
+
+  const generateImages = () => {
+    if (!username) {
+      setPasswordErr(usernameErr);
+      return;
+    }
+
+    if (!selectedNode) {
+      setPasswordErr(nodeErr);
+      return;
+    }
+
+    fetch(`${server}/${selectedNode.address}`)
+      .then((res) => res.json())
+      .then((data) => setImageList1(data));
+
+    setPasswordErr("");
+  };
+
+  // useEffect(() => {
+  //   // fetch(`${server}/images`)
+  //   //   .then((res) => {
+  //   //     return res.json();
+  //   //   })
+  //   //   .then((data) => console.log(data));
+  // }, []);
 
   return (
     <div>
       <div className={styles.form}>
+        <span className={styles.error}> {passwordErr} </span>
         <div className={styles.inputGroup}>
           <label htmlFor="username">Username: </label>
           <input
@@ -25,10 +60,19 @@ export const SignIn = () => {
           <Dropdown list={list} val={selectedNode} setVal={setSelectedNode} />
         </div>
         <div className={styles.surroundDiv}>
-          <button className={styles.passwordGen}>Generate Image Grid</button>
+          <button onClick={generateImages} className={styles.passwordGen}>
+            Generate Image Grid
+          </button>
         </div>
       </div>
-      <ImageGrid imageList={imageList} usernameRef />
+      <ImageGrid
+        imageList={imageList}
+        selectedImages={selectedImages}
+        setSelectedImages={setSelectedImages}
+      />
+      <div className={styles.surroundDiv}>
+        <button className={styles.signIn}>Sign In</button>
+      </div>
     </div>
   );
 };

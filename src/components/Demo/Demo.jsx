@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { BsFillRecordCircleFill as Circle } from "react-icons/bs";
 import Dropdown from "../Dropdown";
 import SignIn from "../SignIn";
+import { SignUp } from "../SignUp/SignUp";
 
 import styles from "./Demo.module.css";
 
@@ -31,6 +32,8 @@ export default function Demo() {
         <Circle />
         <h1>Sign Up</h1>
       </div>
+
+      <SignUp />
     </div>
   );
 }

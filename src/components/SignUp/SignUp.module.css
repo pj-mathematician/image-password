@@ -10,12 +10,6 @@
   margin-bottom: 10px;
 }
 
-label {
-  font-weight: bolder;
-  letter-spacing: 1px;
-  color: #7b1fa2;
-}
-
 .inputGroup > input {
   width: 90%;
   margin: 2px;
@@ -35,24 +29,10 @@ label {
 }
 
 .passwordGen {
-  /* width: 50%; */
-  /* margin-top: 20px; */
   background-color: #1565c0;
   color: white;
   padding: 5px 10px;
   font-size: 15px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.signIn {
-  background-color: #1565c0;
-  color: white;
-  padding: 5px 10px;
-  font-size: 20px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -65,11 +45,22 @@ label {
   display: flex;
   justify-content: center;
 }
+.button {
+  background-color: #1565c0;
+  color: white;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .error {
-  font-size: 15px;
-  color: #d32f2f;
-  text-align: center;
-  margin-bottom: 5px;
-  padding: 10px auto;
+    font-size: 15px;
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 5px;
+    padding: 10px auto;
 }

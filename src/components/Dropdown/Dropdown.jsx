@@ -26,7 +26,7 @@ export const Dropdown = ({ val, setVal, list }) => {
         {open && (
           <div className={styles.dropdownMenu}>
             <ul>
-              {Object.entries(list).map(([id, node]) => {
+              {list && Object.entries(list).map(([id, node]) => {
                 return (
                   <TreeNode
                     entry={[id, node]}
@@ -61,7 +61,7 @@ const TreeNode = ({ entry, selectedNode, setSelectedNode }) => {
         <>
           <span className={styles.parentNode}>{node.name}</span>
           <ul>
-            {Object.entries(node.children).map(([sub_id, sub_node]) => {
+            {Object.entries(node?.children).map(([sub_id, sub_node]) => {
               return (
                 <TreeNode
                   entry={[sub_id, sub_node]}

@@ -1,13 +1,13 @@
 .container {
   max-width: 100%;
   /* background-color: red; */
-  height: 100vh;
+  /* height: 100vh; */
   margin: auto;
   transition: all 0.1s;
   padding: 10px;
   z-index: -2;
   background-color: white;
-  box-shadow: 1px 1px 4px 0px #757575;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 @media screen and (min-width: 900px) {
