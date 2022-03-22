@@ -1,7 +1,7 @@
 .container {
   max-width: 100%;
   /* background-color: red; */
-  /* height: 100vh; */
+  min-height: 100vh;
   margin: auto;
   transition: all 0.1s;
   padding: 10px;

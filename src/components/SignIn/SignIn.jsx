@@ -6,7 +6,8 @@ import ImageGrid from "../ImageGrid";
 import styles from "./this.module.css";
 
 export const SignIn = () => {
-  const server = "http://127.0.0.1:5000";
+  // const server = "http://127.0.0.1:5000";
+  const server = "http://75ca-2405-204-108d-3956-c087-e879-af5c-44e9.ngrok.io";
 
   const [list, setList] = useState(null);
 
@@ -21,6 +22,7 @@ export const SignIn = () => {
   const usernameErr = "Enter a valid username";
   const nodeErr = "Select a category";
   const lengthErr = "At least 3 images should be selected";
+  const emailErr = "Enter a valid email";
 
   const generateImages = () => {
     if (!username) {
@@ -30,6 +32,11 @@ export const SignIn = () => {
 
     if (!selectedNode) {
       setPasswordErr(nodeErr);
+      return;
+    }
+
+    if (!email) {
+      setPasswordErr(emailErr);
       return;
     }
 
@@ -56,8 +63,9 @@ export const SignIn = () => {
 
     const user = {
       username,
-      password: selectedImages.join(' ')
-    }
+      email,
+      password: selectedImages.join(" "),
+    };
 
     fetch(`${server}/login`, {
       headers: {
@@ -68,14 +76,13 @@ export const SignIn = () => {
       body: JSON.stringify(user),
     }).then((res) => {
       if (res.ok) {
-
-        console.log('Success')
-        setUsername('')
-        setSelectedNode(null)
-        setSelectedImages([])
-        setPasswordErr('')
+        console.log("Success");
+        setUsername("");
+        setSelectedNode(null);
+        setSelectedImages([]);
+        setPasswordErr("");
       } else if (res.status === 401) {
-        setPasswordErr('Either username or password is incorrect')
+        setPasswordErr("Either username or password is incorrect");
       }
     });
   };

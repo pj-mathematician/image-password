@@ -7,8 +7,11 @@ import ImageGrid from "../ImageGrid";
 import styles from "./SignUp.module.css";
 
 export const SignUp = () => {
-  const server = "http://127.0.0.1:5000";
+  // const server = "http://127.0.0.1:5000";
+  const server = "http://75ca-2405-204-108d-3956-c087-e879-af5c-44e9.ngrok.io";
+
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
   const [selectedNode, setSelectedNode] = useState(null);
   const [list, setList] = useState(null);
@@ -27,6 +30,7 @@ export const SignUp = () => {
 
   const usernameErr = "Enter a valid username";
   const nodeErr = "Select a category";
+  const emailErr = "Enter a valid email";
 
   const generateImages = () => {
     if (!username) {
@@ -36,6 +40,11 @@ export const SignUp = () => {
 
     if (!selectedNode) {
       setPasswordErr(nodeErr);
+      return;
+    }
+
+    if (!email) {
+      setPasswordErr(emailErr);
       return;
     }
 
@@ -72,6 +81,7 @@ export const SignUp = () => {
     }
     const user = {
       username,
+      email,
       password: password.join(" "),
     };
     console.log(user);
@@ -85,9 +95,9 @@ export const SignUp = () => {
       body: JSON.stringify(user),
     }).then((res) => {
       if (res.ok) {
-        setUsername('')
-        setPassword([])
-        setConfirmPassword([])
+        setUsername("");
+        setPassword([]);
+        setConfirmPassword([]);
       }
     });
 
@@ -102,6 +112,14 @@ export const SignUp = () => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.currentTarget.value)}
+        />
+      </div>
+      <div className={styles.inputGroup}>
+        <label htmlFor="email">Email: </label>
+        <input
+          type="email"
+          value={username}
+          onChange={(e) => setEmail(e.currentTarget.value)}
         />
       </div>
       <div className={styles.selectGroup}>
@@ -154,4 +172,3 @@ export const SignUp = () => {
     </div>
   );
 };
-
