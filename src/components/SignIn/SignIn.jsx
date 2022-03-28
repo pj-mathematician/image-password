@@ -7,10 +7,11 @@ import styles from "./this.module.css";
 
 export const SignIn = () => {
   // const server = "http://127.0.0.1:5000";
-  const server = "http://75ca-2405-204-108d-3956-c087-e879-af5c-44e9.ngrok.io";
+  const server = "https://image-password-backend.herokuapp.com";
 
   const [list, setList] = useState(null);
 
+  const [email, setEmail] = useState('')
   const [imageList, setImageList] = useState(null);
 
   const [selectedNode, setSelectedNode] = useState(null);
@@ -62,7 +63,7 @@ export const SignIn = () => {
     }
 
     const user = {
-      username,
+      username: username.trim(),
       email,
       password: selectedImages.join(" "),
     };
@@ -77,7 +78,9 @@ export const SignIn = () => {
     }).then((res) => {
       if (res.ok) {
         console.log("Success");
+        alert('Login Successful')
         setUsername("");
+        setEmail('')
         setSelectedNode(null);
         setSelectedImages([]);
         setPasswordErr("");
@@ -98,6 +101,15 @@ export const SignIn = () => {
             onChange={(e) => setUsername(e.currentTarget.value)}
           />
         </div>
+        <div className={styles.inputGroup}>
+        <label htmlFor="email">Email: </label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.currentTarget.value)}
+        />
+      </div>
+
         <div className={styles.selectGroup}>
           <label htmlFor="category">Category: </label>
           <Dropdown list={list} val={selectedNode} setVal={setSelectedNode} />

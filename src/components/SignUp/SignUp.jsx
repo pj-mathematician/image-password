@@ -8,7 +8,7 @@ import styles from "./SignUp.module.css";
 
 export const SignUp = () => {
   // const server = "http://127.0.0.1:5000";
-  const server = "http://75ca-2405-204-108d-3956-c087-e879-af5c-44e9.ngrok.io";
+  const server = "https://image-password-backend.herokuapp.com";
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -80,7 +80,7 @@ export const SignUp = () => {
       return;
     }
     const user = {
-      username,
+      username: username.trim(),
       email,
       password: password.join(" "),
     };
@@ -118,7 +118,7 @@ export const SignUp = () => {
         <label htmlFor="email">Email: </label>
         <input
           type="email"
-          value={username}
+          value={email}
           onChange={(e) => setEmail(e.currentTarget.value)}
         />
       </div>
